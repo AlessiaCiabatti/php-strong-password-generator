@@ -1,7 +1,6 @@
 <?php 
 
-// verifico se esiste
-// il numero che il cliente inserisce
+// se vengo chiamato in GET con il parametro numero = 10 la varibile $numero_utente è uguale a 10 altrimenti è vuota
 $numero_utente = $_POST['numero'] ?? '';
 
 // funzione per generare password random
@@ -17,6 +16,19 @@ function getPssw($numero_utente) {
  
     return $random_password;
 
+};
+
+
+$error_message = '';
+
+if(isset($_POST['numero'])){
+  if((!getPssw($numero_utente))){
+    $error_message= 'Inserire un numero';
+  }else{
+    session_start();
+    $_SESSION['new_password'] = getPssw($numero_utente);
+    header('Location: ./user.php');
+  }
 };
 
 ?>
