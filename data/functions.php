@@ -19,16 +19,4 @@ function getPssw($numero_utente) {
 };
 
 
-$error_message = '';
-
-if(isset($_POST['numero'])){
-  if((!getPssw($numero_utente))){
-    $error_message= 'Inserire un numero';
-  }else{
-    session_start();
-    $_SESSION['new_password'] = getPssw($numero_utente);
-    header('Location: ./user.php');
-  }
-};
-
 ?>
