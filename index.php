@@ -1,24 +1,7 @@
 <?php 
-// verifico se esiste
-// il numero che il cliente inserisce
-$numero_utente = $_POST['numero'] ?? '';
 
-// funzione per generare password random
-function getPssw($numero_utente) {
-    $caratteri = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?&%$<>^+-*/()[]{}@#_=';
-    $random_password = '';
+include_once __DIR__ . '/data/functions.php';
  
-    for ($i = 0; $i < $numero_utente; $i++) {
-        $numero_random = rand(0, strlen($caratteri) - 1);
-        // $caratteri[$numero_random]; se numero ramndom è uguale a 5, concateno aa random password il quinto carattere della stringa caratteri in questo caso 4
-        $random_password .= $caratteri[$numero_random];
-    }
- 
-    return $random_password;
-
-};
- 
-echo getPssw($numero_utente);
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +22,7 @@ echo getPssw($numero_utente);
   <form action="index.php" method="post">
     <input type="text" name="numero"> 
     <button type="subtmit" class="btn btn-primary">Invia</button>
+    <h3><?php echo getPssw($numero_utente) ?></h3>
   </form>
 
 </div>
